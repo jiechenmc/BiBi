@@ -17,7 +17,7 @@ export default {
   navs: [
     {
       url: 'https://jiechen.dev',
-      name: 'About'
+      name: 'Home'
     },
   ]
 }
