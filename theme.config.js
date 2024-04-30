@@ -16,8 +16,8 @@ export default {
   darkMode: true,
   navs: [
     {
-      url: 'jiechen.dev',
+      url: 'https://jiechen.dev',
       name: 'About'
-    }
+    },
   ]
 }
