@@ -84,7 +84,7 @@ func main() {
 
 > In Go, you can simply wrap the function with the go keyword to create a Goroutine
 
-In my example, I have to pass in the `file` as the parameter of the Goroutine because the loop variable `file` is only created once, so subsequent Goroutines see the same value. However, starting in [Go 1.22](https://go.dev/blog/loopvar-preview) loop variables are created per iteration. My current version is `Go 1.20.1`.
+In my example, I have to pass in the `file` as the parameter of the Goroutine because the loop variable `file` is only created once and updated every iteration, so subsequent Goroutines see the same value (last value of the range) if I do not. However, starting in [Go 1.22](https://go.dev/blog/loopvar-preview) loop variables are created per iteration. My current version is `Go 1.20.1`.
 
 ## Wait Groups
 
