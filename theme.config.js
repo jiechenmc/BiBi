@@ -1,23 +1,17 @@
-const YEAR = new Date().getFullYear();
-
 export default {
-  footer: <p>{YEAR} © Jie Chen.</p>,
-  head: ({ title, meta }) => (
-    <>
-      {meta.description && (
-        <meta name="description" content={meta.description} />
-      )}
-      {meta.tag && <meta name="keywords" content={meta.tag} />}
-      {meta.author && <meta name="author" content={meta.author} />}
-    </>
-  ),
-  readMore: 'Read More →',
-  postFooter: null,
-  darkMode: true,
-  navs: [
-    {
-      url: 'https://jiechen.dev',
-      name: 'Home'
-    },
-  ]
+  logo: <span>My Learning Journey</span>,
+  project: {
+    link: 'https://github.com/jiechenmc/blog.jiechen.dev'
+  },
+  footer: {
+    text: (
+      <span>
+        {new Date().getFullYear()} ©{' '}
+        <a href="https://jiechen.dev/" target="_blank">
+          Jie Chen
+        </a>.
+      </span>
+    )
+  },
+  docsRepositoryBase: "https://github.com/jiechenmc/blog.jiechen.dev"
 }

@@ -1,11 +1,3 @@
----
-title: Go Concurrency
-date: 2024/04/30
-description: Improve program efficiency with Goroutines.
-tag: Go, System
-author: Jie Chen
----
-
 > Under Construction 🚧 ...
 
 > [Goroutines](https://go.dev/tour/concurrency/1) are lightweight software threads managed by the Go runtime. 
@@ -94,7 +86,7 @@ Coming Soon...
 
 ## Availability
 
-The source code can be found [here](https://example.com).
+The source code can be found [here](https://github.com/jiechenmc/blog-go-concurrency).
 
 ## Experimental Evaluations
 
