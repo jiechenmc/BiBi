@@ -1,4 +1,3 @@
-> Under Construction 🚧 ...
 
 > [Goroutines](https://go.dev/tour/concurrency/1) are lightweight software threads managed by the Go runtime. 
 
@@ -53,7 +52,7 @@ func main() {
 
 ## Concurrent Execution
 
-```go
+```go {5,14}
 func main() {
 	files, err := os.ReadDir("./folderA")
 	check(err)
@@ -71,27 +70,54 @@ func main() {
 	}
 }
 ```
-
 > In Go, you can simply wrap the function with the go keyword to create a Goroutine
 
-In `Go 1.20.1`, the variable `file` has to be passed as an argument to the Goroutine because loop variables are created once and are updated every iteration. Otherwise, all subsequent Goroutines will see the last element of the range. However, starting in [Go 1.22](https://go.dev/blog/loopvar-preview) loop variables are created per iteration.
+In `Go 1.20.1`, the variable `file` has to be passed as an argument to the Goroutine because loop variables are created once and are updated every iteration. Otherwise, all subsequent Goroutines will see the same file name. However, starting in [Go 1.22](https://go.dev/blog/loopvar-preview) loop variables are created per iteration.
 
 ## Wait Groups
 
 Wait groups are a mechanism for the Go runtime to wait for Goroutines to finish running. They are simply counters and can be incremented with `wg.Add()`, decremented with `wg.Done()`, and to wait using `wg.Wait()`.
 
-```go
-Coming Soon...
+```go {5,7,17,20}
+func main() {
+	files, err := os.ReadDir("./folderA")
+	check(err)
+
+	var wg sync.WaitGroup
+	for _, file := range files {
+		wg.Add(1)
+		go func(file os.DirEntry) {
+			src := "./folderA/" + file.Name()
+			dest := "./folderB/" + file.Name()
+			_, err = copyToDestination(src, dest)
+			if err != nil {
+				fmt.Printf("%s -> %s ❌\n", src, dest)
+			} else {
+				fmt.Printf("%s -> %s ✅\n", src, dest)
+			}
+			defer wg.Done()
+		}(file)
+	}
+	wg.Wait()
+}
 ```
 
 ## Availability
 
-The source code can be found [here](https://github.com/jiechenmc/blog-go-concurrency).
+The source code can be found on [Github](https://github.com/jiechenmc/blog-go-concurrency).
 
 ## Experimental Evaluations
 
-...
+The test files are created with `dd if=/dev/zero of=upload_test bs=1M count=<size>` and measured with the `time(1)` command.
 
-## Notes
+| Size   | Single | Concurrent |
+| :-----: | :----: | :----: |
+| 50G (10 * 5G)   |  86% cpu 22.366 total   | 615% cpu 9.431 total |
+| 10G (10 * 1G) | 92% cpu 3.649 total  |  732% cpu 1.270 total |
+| 1G (10 * 100M) | 89% cpu 0.445 total |   420% cpu 0.215 total |
+| 100M (10 * 10M) | 81% cpu 0.206 total |  133% cpu 0.152 total |
 
-For smaller file transfers, the overhead of thread context switching will increase the run time.
+
+## Conclusion
+
+In the concurrent setup, every 100% in CPU utilization equates to about 1 core. For smaller file transfers, there is not much benefits at the cost of additional CPU utilization. However, for larger file transfers the run time was reduced by about 58%.
