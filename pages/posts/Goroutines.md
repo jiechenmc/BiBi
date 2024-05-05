@@ -8,9 +8,7 @@ author: Jie Chen
 
 > Under Construction 🚧 ...
 
-[Goroutines](https://go.dev/tour/concurrency/1) are lightweight software threads managed by the Go run time. 
-
-
+> [Goroutines](https://go.dev/tour/concurrency/1) are lightweight software threads managed by the Go runtime. 
 
 ## Synchronous Execution
 ```go
@@ -59,7 +57,7 @@ func main() {
 }
 ```
 
-> Each File will be copied one at a time.
+> Files will be copied one at a time.
 
 ## Concurrent Execution
 
@@ -84,14 +82,21 @@ func main() {
 
 > In Go, you can simply wrap the function with the go keyword to create a Goroutine
 
-In my example, I have to pass in the `file` as the parameter of the Goroutine because the loop variable `file` is only created once and updated every iteration, so subsequent Goroutines see the same value (last value of the range) if I do not. However, starting in [Go 1.22](https://go.dev/blog/loopvar-preview) loop variables are created per iteration. My current version is `Go 1.20.1`.
+In `Go 1.20.1`, the variable `file` has to be passed as an argument to the Goroutine because loop variables are created once and are updated every iteration. Otherwise, all subsequent Goroutines will see the last element of the range. However, starting in [Go 1.22](https://go.dev/blog/loopvar-preview) loop variables are created per iteration.
 
 ## Wait Groups
 
-We need to introduce wait groups so we can wait for every Goroutine to finish before exiting.
+Wait groups are a mechanism for the Go runtime to wait for Goroutines to finish running. They are simply counters and can be incremented with `wg.Add()`, decremented with `wg.Done()`, and to wait using `wg.Wait()`.
 
+```go
+Coming Soon...
+```
 
-## Examples
+## Availability
+
+The source code can be found [here](https://example.com).
+
+## Experimental Evaluations
 
 ...
 
