@@ -1,5 +1,6 @@
-
-> [Goroutines](https://go.dev/tour/concurrency/1) are lightweight software threads managed by the Go runtime. 
+## Introduction
+[Goroutines](https://go.dev/tour/concurrency/1) are lightweight software threads managed by the Go runtime and can be used to achieve concurrency. 
+> Concurrency is the execution of multiple instruction sequences at the same time. Traditionally, the Operating System scheduler will rapidly context switch between threads so all make progress. In Go, this is managed by the runtime.
 
 ## Synchronous Execution
 ```go
@@ -72,7 +73,7 @@ func main() {
 ```
 > In Go, you can simply wrap the function with the go keyword to create a Goroutine
 
-In `Go 1.20.1`, the variable `file` has to be passed as an argument to the Goroutine because loop variables are created once and are updated every iteration. Otherwise, all subsequent Goroutines will see the same file name. However, starting in [Go 1.22](https://go.dev/blog/loopvar-preview) loop variables are created per iteration.
+In Go versions < 1.22, the variable `file` has to be passed as an argument to the Goroutine because loop variables are created once and are updated every iteration. Otherwise, all subsequent Goroutines will see the same file name. However, starting in [Go 1.22](https://go.dev/blog/loopvar-preview) loop variables are created per iteration.
 
 ## Wait Groups
 
