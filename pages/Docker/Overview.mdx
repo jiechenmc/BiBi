@@ -1,0 +1,71 @@
+# Docker 
+import { Callout } from 'nextra/components'
+ 
+<Callout type="warning" emoji="⚠️">
+  UNDER CONSTRUCTION 🚧🚧
+  - [x] Write Something.
+  - [ ] Break the file apart into different sections.
+  - [ ] Finish writing.
+</Callout>
+
+[Docker](https://www.docker.com/) is a software that provides operating system level virtualization called containers.
+
+> A container contains all the nescessary code, libraries, and dependencies to run an application. They are considered to be lightweight compared to traditional virtual machines because containers do not virtualize the underlying hardware.
+
+## Running a Container
+```bash
+docker run --name <container_name> -p <host_port>:<container_port> <image_name> 
+```
+
+> This will pull the latest `<image_name>` from [docker hub](https://hub.docker.com/) and creates a container called `<container_name>`. The `-p` flag will publish the `<container_port>` to `<host_port>`. Any incoming requests to the host on `<host_port>` will be forwarded to the container.
+
+## Interacting with a Container
+```bash
+docker exec -it <container_name> <command>
+```
+
+> This will create a pseudo-terminal connection to `<container_name>` and execute the `<command>` specified. The `-i` flag will keep `stdin` open so furthur commands can be issued. 
+
+I use `docker exec -it <container_name> sh` a lot to inspect a container's file system
+
+## Container Networks
+
+```bash
+docker network ls
+docker inspect <network_id>
+```
+
+> Docker has its own DNS (127.0.0.11). By default the host can not directly access a container unless the port is published or the container is created under `network_mode = host`.
+
+## Docker Compose
+
+### Purpose
+Docker compose allows multiple containers to be configured in a single YAML file.
+
+### Sample
+
+```yaml {15-16}
+version: '3.1'
+
+services:
+
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+
+  api:
+    build: .
+    restart: always
+    ports:
+      - 3000:3000
+```
+
+> By default, all containers defined in the same compose file share the same network. Container ports can be published with the `ports` property.
+
+## Creating an image
+
+### Sample 
+### Multi-stage builds
