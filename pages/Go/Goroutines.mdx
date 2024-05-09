@@ -79,7 +79,7 @@ In Go versions < 1.22, the variable `file` has to be passed as an argument to th
 
 ## Wait Groups
 
-Wait groups are a mechanism for the Go runtime to wait for Goroutines to finish running. They are simply counters and can be incremented with `wg.Add()`, decremented with `wg.Done()`, and to wait using `wg.Wait()`.
+Wait groups are a mechanism for the Go runtime to wait for Goroutines to finish running. They are simply counters and can be incremented with `wg.Add()`, decremented with `wg.Done()`, and waited using `wg.Wait()`.
 
 ```go {5,7,17,20}
 func main() {
