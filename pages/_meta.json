@@ -1,5 +1,5 @@
 {
-    "Index": "Home",
+    "index": "Index",
     "OS": "Operating Systems",
     "Docker": "Docker",
     "Go": "Go"
