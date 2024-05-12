@@ -3,3 +3,5 @@
 The reason why I thought multithreading was a scam :(
 
 I first started multithreading using Python and noticed there are no performance improvements what so ever. This is due to the Global Interpreter Lock (GIL) where the GIL is a single lock on the intepreter and any execution of Python bytecode must acquire this lock. This means that when one thread executes the others have to wait for the lock to be released.
+
+The [multiprocessing](https://docs.python.org/3/library/multiprocessing.html#module-multiprocessing) library should be used instead of [threading](https://docs.python.org/3/library/threading.html) to achieve parallelism.

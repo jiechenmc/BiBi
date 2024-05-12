@@ -8,9 +8,7 @@ import { Callout } from 'nextra/components'
 
 > Processes are more expensive to create and destroy compared to threads.
 
-Processes can have many threads and each process has a separate address space. Threads share the address space of the process that created them. As you can imagine, creating and tearing down threads is cheaper than processes.
-
-The following examples will be written in `Node.js` since it shares similiar APIs to `C`.
+Processes can have many threads and each process has a separate address space. Threads share the address space of the process that created them. As you can imagine, creating and tearing down threads is cheaper than processes. Every language has its own API for creating processes and threads, but the procedure is pretty similiar.
 
 ## Process
 
