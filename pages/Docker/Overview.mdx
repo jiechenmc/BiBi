@@ -1,13 +1,6 @@
 # Docker 
 import { Callout } from 'nextra/components'
  
-<Callout type="warning" emoji="⚠️">
-  UNDER CONSTRUCTION 🚧🚧
-  - [x] Write Something.
-  - [ ] Break the file apart into different sections.
-  - [ ] Finish writing.
-</Callout>
-
 [Docker](https://www.docker.com/) is a software that provides operating system level virtualization called containers.
 
 > A container contains all the nescessary code, libraries, and dependencies to run an application. They are considered to be lightweight compared to traditional virtual machines because containers do not virtualize the underlying hardware.
@@ -26,46 +19,32 @@ docker exec -it <container_name> <command>
 
 > This will create a pseudo-terminal connection to `<container_name>` and execute the `<command>` specified. The `-i` flag will keep `stdin` open so furthur commands can be issued. 
 
-I use `docker exec -it <container_name> sh` a lot to inspect a container's file system
-
-## Container Networks
+## Container Network
 
 ```bash
 docker network ls
 docker inspect <network_id>
 ```
 
-> Docker has its own DNS (127.0.0.11). By default the host can not directly access a container unless the port is published or the container is created under `network_mode = host`.
+> Docker has its own DNS at `127.0.0.11`. By default the host can not directly access a container unless the port is published or the container is created under `network_mode = host`. Inspecting a network will show all containers in the network.
 
-## Docker Compose
+## Container Filesystem
 
-### Purpose
-Docker compose allows multiple containers to be configured in a single YAML file.
-
-### Sample
-
-```yaml {15-16}
-version: '3.1'
-
-services:
-
-  mongo:
-    image: mongo
-    restart: always
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
-
-  api:
-    build: .
-    restart: always
-    ports:
-      - 3000:3000
+```bash
+docker exec -it <container_name> sh
 ```
 
-> By default, all containers defined in the same compose file share the same network. Container ports can be published with the `ports` property.
+> This allows a shell session to the container where you can freely navigate around the container filesystem.
 
-## Creating an image
+### Volume
 
-### Sample 
-### Multi-stage builds
+Containers are stateless, so data is lost when a container is destroyed. One way to preserve data is to use a volume. Volumes are managed by Docker.
+
+### Bind Mount
+
+Bind Mount is like a soft link to a location on the host's Filesystem. Any changes to the files on the host will reflect in the container.
+
+> Bind Mounts are dependent on directory structure and OS of the host machine, so problems will occurr in development containers if someone uses Windows while another uses Linux.
+
+### Bind Mount vs Volume
+I found Bind Mounts to be more effective for development containers since the image size will be smaller and you can take advantage of features like hot-reload in many frameworks. However, Volumes are more portable and is used for production containers.

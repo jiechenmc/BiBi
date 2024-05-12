@@ -4,3 +4,29 @@ import { Callout } from 'nextra/components'
 <Callout type="warning" emoji="⚠️">
   UNDER CONSTRUCTION 🚧🚧
 </Callout>
+
+## Purpose
+Docker compose allows multiple containers to be configured in a single YAML file.
+
+## Sample
+
+```yaml {15-16}
+version: '3.1'
+
+services:
+
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+
+  api:
+    build: .
+    restart: always
+    ports:
+      - 3000:3000
+```
+
+> By default, all containers defined in the same compose file share the same network. Container ports can be published with the `ports` property.
