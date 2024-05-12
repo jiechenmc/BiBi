@@ -1,4 +1,8 @@
-# Insert
+# AWS DynamoDB
+
+> The following examples use the `Node.js 20.x` runtime.
+
+## Insert
 
 ```javascript
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
@@ -11,13 +15,16 @@ export const handler = async (event) => {
   
   const body = event.body ? JSON.parse(event.body) : {}
   const ID = event.id ?? body.id
-  const TEXT = event.text ?? body.text
+  const FIELD = event.field ?? body.field
+
+
+  const TABLE_NAME = "EXAMPLE"
       
   const command = new PutCommand({
-    TableName: "blog",
+    TableName: TABLE_NAME,
     Item: {
       id: ID,
-      "text": TEXT,
+      "text": FIELD,
       "date_added": Date.now()
     },
   });
