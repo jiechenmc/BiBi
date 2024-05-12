@@ -1,0 +1,29 @@
+# Insert
+
+```javascript
+import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
+import { PutCommand, DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
+
+const client = new DynamoDBClient({});
+const docClient = DynamoDBDocumentClient.from(client);
+
+export const handler = async (event) => {
+  
+  const body = event.body ? JSON.parse(event.body) : {}
+  const ID = event.id ?? body.id
+  const TEXT = event.text ?? body.text
+      
+  const command = new PutCommand({
+    TableName: "blog",
+    Item: {
+      id: ID,
+      "text": TEXT,
+      "date_added": Date.now()
+    },
+  });
+
+  const response = await docClient.send(command);
+  
+  return response;
+};
+```
