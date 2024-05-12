@@ -2,7 +2,7 @@
 
 [Goroutines](https://go.dev/tour/concurrency/1) are lightweight software threads managed by the Go runtime and can be used to achieve concurrency. 
 
-> Concurrency is the execution of multiple instruction sequences at the same time. Traditionally, the Operating System scheduler will rapidly context switch between threads so all make progress. In Go, this is managed by the runtime with a [cooperative scheduler](https://en.wikipedia.org/wiki/Cooperative_multitasking).
+> Concurrency is the execution of multiple instruction sequences at the same time. Traditionally, the Operating System scheduler will rapidly context switch between threads so all make progress. In Go, this is previously managed by the runtime with a [cooperative scheduler](https://en.wikipedia.org/wiki/Cooperative_multitasking) and has been replaced with a [preemptive scheduler](https://en.wikipedia.org/wiki/Preemption_(computing)) to avoid starvation.
 
 ## Synchronous Execution
 ```go
