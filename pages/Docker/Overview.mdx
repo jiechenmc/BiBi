@@ -42,7 +42,7 @@ Containers are stateless, so data is lost when a container is destroyed. One way
 
 ### Bind Mount
 
-Bind Mount is like a soft link to a location on the host's Filesystem. Any changes to the files on the host will reflect in the container.
+Bind Mount is like a hard link to a location on the host's Filesystem. Any changes to the files on the host will reflect in the container.
 
 > Bind Mounts are dependent on directory structure and OS of the host machine, so problems will occurr in development containers if someone uses Windows while another uses Linux.
 
