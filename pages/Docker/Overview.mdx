@@ -3,7 +3,7 @@ import { Callout } from 'nextra/components'
  
 [Docker](https://www.docker.com/) is a software that provides operating system level virtualization called containers.
 
-> A container contains all the nescessary code, libraries, and dependencies to run an application. They are considered to be lightweight compared to traditional virtual machines because containers do not virtualize the underlying hardware.
+> A container contains all the nescessary code, libraries, and dependencies to run an application. They are considered to be lightweight compared to traditional virtual machines because containers do not virtualize the underlying hardware. Containers share the same kernel as the host OS.
 
 ## Running a Container
 ```bash
@@ -44,7 +44,7 @@ Containers are stateless, so data is lost when a container is destroyed. One way
 
 Bind Mount is like a hard link to a location on the host's Filesystem. Any changes to the files on the host will reflect in the container.
 
-> Bind Mounts are dependent on directory structure and OS of the host machine, so problems will occurr in development containers if someone uses Windows while another uses Linux.
+> Bind Mounts are dependent on directory structure and OS of the host machine, so problems will occurr if someone uses Windows while another uses Linux.
 
 ### Bind Mount vs Volume
 I found Bind Mounts to be more effective for development containers since the image size will be smaller and you can take advantage of features like hot-reload in many frameworks. However, Volumes are more portable and is used for production containers.
