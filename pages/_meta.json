@@ -1,6 +1,6 @@
 {
     "index": "Index",
-    "OS": "Operating Systems",
-    "Docker": "Docker",
+    "Concurrency": "Concurrency",
+    "Virtualization": "Virtualization",
     "Lambda": "AWS Lambda"
 }
