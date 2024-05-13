@@ -1,6 +1,5 @@
 {
     "index": "Index",
     "Concurrency": "Concurrency",
-    "Virtualization": "Virtualization",
-    "Lambda": "AWS Lambda"
+    "Virtualization": "Virtualization"
 }
