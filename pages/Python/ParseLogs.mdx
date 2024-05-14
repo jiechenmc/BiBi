@@ -38,4 +38,4 @@ tracemalloc.stop()
 
 > The peak memory consumption was 22.762 kilobytes. 91% smaller than `f.readlines()`.
 
-Reading from the buffer will keep memory consumption low. However, the performance of the 2 programs were very similar (~0.025 seconds).
+Reading from the buffer will keep memory consumption low. However, the performance of the 2 programs in this case were very similar (~0.025 seconds). In larger programs or larger log files, this may cause a performance penalty because if fast RAM runs out, the slower swap memory will be used. 
