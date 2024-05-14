@@ -27,7 +27,7 @@ EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
 ```
 
-> The sample shows common steps taken to build and deploy a `React` application. This dockerfile is optimized to use multi-stage builds and leverage layer cache. 
+> The sample shows steps taken to build and deploy a `React` application. This dockerfile is optimized to use multi-stage builds and leverage layer cache. 
 
 ### Layer Cache
 
@@ -51,7 +51,9 @@ EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
 ```
 
-Each instruction in a Dockerfile translates to a layer in the final image and will be pulled from the cache if it is clean. If a layer becomes dirty, then the layers after it will be invalidated as well. Consider what happens if lines 5 and 8 are swapped. If that happens, then more invalidations will occur since `COPY . .` includes the source code that changes all the time! [Read more](https://docs.docker.com/build/cache/)
+> Each instruction in this Dockerfile translates to a layer in your final image. Whenever a layer changes, that layer will need to be re-built.
+
+The dependencies from `package.json` are installed before copying the rest of the code over because dependencies do not change that often. [Read more](https://docs.docker.com/build/cache/)
 
 ### Multi-stage builds
 
