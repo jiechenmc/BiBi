@@ -34,5 +34,5 @@ export default async function handler(
     res: NextApiResponse<ResponseData>
 ) {
     await runMiddleware(req, res, cors);
-    res.status(200).json({ title: "Go Concurrency with Goroutines", url: "https://blog.jiechen.dev/Concurrency/Go/Goroutines" })
+    res.status(200).json({ title: "Docker Image", url: "https://blog.jiechen.dev/Docker/Image" })
 }
