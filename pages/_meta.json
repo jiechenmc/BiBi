@@ -1,4 +1,8 @@
 {
     "index": "Index",
-    "Lambda": "AWS Lambda"
+    "Docker": "Docker",
+    "Kubernetes": "Kubernetes",
+    "Lambda": "AWS Lambda",
+    "Go": "Go",
+    "Python": "Python"
 }
