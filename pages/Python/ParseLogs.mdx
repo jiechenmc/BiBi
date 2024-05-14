@@ -1,0 +1,41 @@
+# Parsing Logs
+
+The following used a small 150 kilobytes [Traefik](https://traefik.io/traefik/) access.log.
+
+## BAD
+
+```python {6}
+import tracemalloc
+
+tracemalloc.start()
+
+with open("access.log", "r") as f:
+    for line in f.readlines():
+        print(line.split()[0])
+
+print(tracemalloc.get_traced_memory())
+tracemalloc.stop()
+```
+
+> The peak memory consumption was 238.501 kilobytes.
+
+It is very important to not load everything into memory with `f.readlines()`, instead you should read from the buffer to reduce memory consumption.
+
+## Good
+
+```python {6}
+import tracemalloc
+
+tracemalloc.start()
+
+with open("access.log", "r") as f:
+    for line in f:
+        print(line.split()[0])
+
+print(tracemalloc.get_traced_memory())
+tracemalloc.stop()
+```
+
+> The peak memory consumption was 22.762 kilobytes. 91% smaller than `f.readlines()`.
+
+Reading from the buffer will keep memory consumption low. However, the performance of the 2 programs were very similar (~0.025 seconds).
