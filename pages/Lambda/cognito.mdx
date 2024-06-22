@@ -26,8 +26,8 @@ const confirm = () => {
 
     const command = new ConfirmSignUpCommand({
         ClientId: config.cog_clientId,
-        Username: "jiechenmc@gmail.com",
-        ConfirmationCode: "015839"
+        Username: "<EMAIL>",
+        ConfirmationCode: "<CONFIRMATION_CODE>"
     });
 
     return client.send(command);
@@ -44,8 +44,8 @@ const login = () => {
         ClientId: config.cog_clientId,
         AuthFlow: "USER_PASSWORD_AUTH",
         AuthParameters: {
-        USERNAME: "jiechenmc@gmail.com",
-        PASSWORD: "@Chenjie1234"
+        USERNAME: "<EMAIL>",
+        PASSWORD: "<PASSWORD>"
         }
     });
 
