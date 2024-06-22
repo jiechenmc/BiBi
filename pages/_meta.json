@@ -5,5 +5,5 @@
     "Kubernetes": "Kubernetes",
     "Go": "Go",
     "Python": "Python",
-    "Lambda": "AWS Lambda"
+    "Lambda": "AWS SDK"
 }

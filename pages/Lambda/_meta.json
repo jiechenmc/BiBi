@@ -1,3 +1,4 @@
 {
-    "ddb": "AWS DynamoDB"
+    "ddb": "AWS DynamoDB",
+    "cognito": "AWS Cognito"
 }

@@ -1,0 +1,78 @@
+# AWS Cognito
+
+## Sign Up
+
+```javascript
+const signUp = ({ username, password, email }: SignUpInformation) => {
+    const client = new CognitoIdentityProviderClient({ region: 'us-east-1' });
+
+    const command = new SignUpCommand({
+        ClientId: config.cog_clientId,
+        Username: username,
+        Password: password,
+        // any custom attributes
+        UserAttributes: [{ Name: "email", Value: email }],
+    });
+
+    return client.send(command);
+};
+```
+
+## Confirm Email
+
+```javascript
+const confirm = () => {
+    const client = new CognitoIdentityProviderClient({ region: 'us-east-1' });
+
+    const command = new ConfirmSignUpCommand({
+        ClientId: config.cog_clientId,
+        Username: "jiechenmc@gmail.com",
+        ConfirmationCode: "015839"
+    });
+
+    return client.send(command);
+}
+```
+
+## Sign In 
+
+```javascript
+const login = () => {
+    const client = new CognitoIdentityProviderClient({ region: 'us-east-1' });
+
+    const command = new InitiateAuthCommand({
+        ClientId: config.cog_clientId,
+        AuthFlow: "USER_PASSWORD_AUTH",
+        AuthParameters: {
+        USERNAME: "jiechenmc@gmail.com",
+        PASSWORD: "@Chenjie1234"
+        }
+    });
+
+    return client.send(command);
+}
+```
+
+## Get Current User
+
+```javascript
+const getCurrentUser = (token: string) => {
+    const client = new CognitoIdentityProviderClient({ region: 'us-east-1' });
+
+    const command = new GetUserCommand({ AccessToken: token });
+
+    return client.send(command);
+}
+```
+
+## Login Flow
+
+```javascript
+const handleLogin = () => {
+    login().then(r => {
+        if (r.AuthenticationResult?.AccessToken) {
+        getCurrentUser(r.AuthenticationResult.AccessToken).then(r => console.log(r))
+        }
+    })
+}
+```
