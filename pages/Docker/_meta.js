@@ -1,4 +1,4 @@
 export default {
-  Container: "Container",
+  Intro: "Intro",
   Image: "Image",
 };

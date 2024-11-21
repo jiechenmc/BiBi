@@ -3,7 +3,5 @@ export default {
   Linux: "Linux",
   Docker: "Docker",
   Language: "Language Features",
-  Lambda: {
-    display: "hidden",
-  },
+  Design: "System Design",
 };
