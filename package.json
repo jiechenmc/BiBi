@@ -5,6 +5,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "next": "^15.0.3",
     "nextra": "^3.2.4",
     "nextra-theme-docs": "^3.2.4",
