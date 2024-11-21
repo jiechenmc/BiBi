@@ -1,10 +1,8 @@
 export default {
   index: "Index",
-  OSTEP: "OSTEP",
+  Linux: "Linux",
   Docker: "Docker",
-  Kubernetes: "Kubernetes",
-  Go: "Go",
-  Python: "Python",
+  Language: "Language Features",
   Lambda: {
     display: "hidden",
   },
