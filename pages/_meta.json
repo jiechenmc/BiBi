@@ -1,9 +1,0 @@
-{
-    "index": "Index",
-    "OSTEP": "OSTEP",
-    "Docker": "Docker",
-    "Kubernetes": "Kubernetes",
-    "Go": "Go",
-    "Python": "Python",
-    "Lambda": "AWS SDK"
-}
