@@ -15,7 +15,7 @@ const cors = Cors({
 // And to throw an error when an error happens in a middleware
 function runMiddleware(req, res, fn) {
   return new Promise((resolve, reject) => {
-    fn(req, res, (result: any) => {
+    fn(req, res, (result) => {
       if (result instanceof Error) {
         return reject(result);
       }
