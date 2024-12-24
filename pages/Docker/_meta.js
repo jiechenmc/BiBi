@@ -1,4 +1,4 @@
 export default {
-  Intro: "Intro",
+  Intro: "Getting Started",
   Image: "Image",
 };
