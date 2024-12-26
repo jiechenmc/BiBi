@@ -1,4 +1,3 @@
 export default {
-  Preface: "Preface",
-  Virtualization: "Virtualization"
+  EBConcurrency: "Event Based Concurrency",
 };
